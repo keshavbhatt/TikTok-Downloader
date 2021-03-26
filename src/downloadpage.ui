@@ -33,7 +33,6 @@
     <widget class="QWidget" name="topBar" native="true">
      <property name="styleSheet">
       <string notr="true">QWidget#topBar{
-	padding: 9px;
 	     color: silver;
          background-image:url(:/icons/texture.png);
 		  background-clip: border;
@@ -47,26 +46,26 @@
 </string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="leftMargin">
-       <number>4</number>
-      </property>
-      <property name="topMargin">
-       <number>4</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>4</number>
-      </property>
       <item>
        <widget class="QPushButton" name="close_button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Go back (Home)</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding:4px;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
-          <normaloff>:/icons/arrow-left-line.png</normaloff>:/icons/arrow-left-line.png</iconset>
+          <normaloff>:/icons/arrow-left-s-line.png</normaloff>:/icons/arrow-left-s-line.png</iconset>
         </property>
         <property name="shortcut">
          <string>Esc</string>
@@ -158,7 +157,13 @@ background-color: &quot;transparent&quot;;
 }</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
          <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
           <number>0</number>
          </property>
          <item>
@@ -254,6 +259,18 @@ QLabel{
 }</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLabel" name="progress_label">
            <property name="sizePolicy">
@@ -289,25 +306,69 @@ QLabel{
            </property>
           </widget>
          </item>
-         <item alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="done_button">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Done</string>
-           </property>
-           <property name="icon">
-            <iconset resource="icons.qrc">
-             <normaloff>:/icons/arrow-go-back-line.png</normaloff>:/icons/arrow-go-back-line.png</iconset>
-           </property>
-          </widget>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QPushButton" name="done_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Done</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/icons/arrow-go-back-line.png</normaloff>:/icons/arrow-go-back-line.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="open_location">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Open download location</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/icons/folder-open-line.png</normaloff>:/icons/folder-open-line.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="play">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Play</string>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/icons/play-line.png</normaloff>:/icons/play-line.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>

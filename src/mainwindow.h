@@ -14,6 +14,9 @@
 
 #include "downloadpage.h"
 #include "help.h"
+#include "history.h"
+#include "account.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -40,10 +43,23 @@ private slots:
     void on_download_button_clicked();
 
 
+    void on_history_button_clicked();
+
+    QString toolButtonStyle();
+    void on_unlock_toolButton_clicked();
+
+    void init_account();
+
+    void disablePro();
+    void enablePro();
+    void on_aboutButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSettings settings;
     QGraphicsOpacityEffect *eff = nullptr;
+    History *history = nullptr;
+    account *accountWidget = nullptr;
 
 };
 

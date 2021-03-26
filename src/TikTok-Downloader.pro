@@ -33,27 +33,40 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        account.cpp \
+        claimoffer.cpp \
         cookiejar.cpp \
         downloadpage.cpp \
         help.cpp \
+        history.cpp \
         main.cpp \
         mainwindow.cpp \
+        request.cpp \
         rungaurd.cpp \
+        utils.cpp \
         widgets/elidedLabel/elidedlabel.cpp \
         widgets/waitingSpinner/waitingspinnerwidget.cpp
 
 HEADERS += \
+        account.h \
+        claimoffer.h \
         cookiejar.h \
         downloadpage.h \
         help.h \
+        history.h \
         mainwindow.h \
+        request.h \
         rungaurd.h \
+        utils.h \
         widgets/elidedLabel/elidedlabel.h \
         widgets/waitingSpinner/waitingspinnerwidget.h
 
 FORMS += \
+        account.ui \
+        claimoffer.ui \
         downloadpage.ui \
         help.ui \
+        history.ui \
         mainwindow.ui
 
 # Default rules for deployment.

@@ -10,7 +10,7 @@ Help::Help(QWidget *parent) :
 {
     ui->setupUi(this);
     QStringList exampleUrls;
-    exampleUrls<<"https://www.tiktok.com/@jacquelinef_143/video/6795515905272040706"
+    exampleUrls   <<"https://www.tiktok.com/@jacquelinef_143/video/6795515905272040706"
                   <<"https://www.tiktok.com/@lip.sync.queen/video/6793852017136667910"
                   <<"https://www.tiktok.com/@celinedept/video/6787046505741176069"
                   <<"https://www.tiktok.com/@brentrivera/video/6765579840998378758"
@@ -23,14 +23,17 @@ Help::Help(QWidget *parent) :
                   <<"https://www.tiktok.com/@sampepper/video/6758193960218316037"
                   <<"https://www.tiktok.com/@djbravo47/video/6766440692777536770"
                   <<"https://www.tiktok.com/@samuelgrubbs/video/6760793690362400006"
-                  <<"https://www.tiktok.com/@pj_3132/video/6751795112520600834"
-                  <<"https://www.tiktok.com/@aishwaryadevanofficial/video/6790250830063815938";
+                  <<"https://www.tiktok.com/@pj_3132/video/6751795112520600834";
 
     QStandardItemModel *model = new QStandardItemModel(this);
     foreach (QString str, exampleUrls) {
         model->appendRow(new QStandardItem(str));
     }
     ui->listView->setModel(model);
+
+    if(settings.value("currentHelpTab").isValid()){
+        ui->tabWidget->setCurrentIndex(settings.value("currentHelpTab",0).toInt());
+    }
 }
 
 Help::~Help()
@@ -42,4 +45,9 @@ void Help::on_listView_doubleClicked(const QModelIndex &index)
 {
     auto url = ui->listView->model()->data(index,Qt::DisplayRole).toString();
     emit loadFromExampleUrls(url);
+}
+
+void Help::on_tabWidget_currentChanged(int index)
+{
+    settings.setValue("currentHelpTab",index);
 }

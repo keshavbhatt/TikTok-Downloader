@@ -135,5 +135,9 @@
         <file>icons/anticlockwise-fill.png</file>
         <file>icons/others/Histogram.png</file>
         <file>icons/tiktok-downloader.png</file>
+        <file>icons/icon-512.xcf</file>
+        <file>icons/blur-off-line.png</file>
+        <file>icons/lock-line.png</file>
+        <file>icons/lock-unlock-line.png</file>
     </qresource>
 </RCC>

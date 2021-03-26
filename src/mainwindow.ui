@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>544</width>
-    <height>282</height>
+    <width>610</width>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -97,6 +97,20 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="history_button">
+           <property name="toolTip">
+            <string>History</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/time-line.png</normaloff>:/icons/time-line.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="help_button">
            <property name="toolTip">
             <string>How to download</string>
@@ -133,47 +147,38 @@
      </widget>
     </item>
     <item>
-     <widget class="Line" name="line_2">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>1</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>1</height>
-       </size>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWidget" name="bottom_wid" native="true">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>90</height>
-       </size>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <property name="leftMargin">
-        <number>9</number>
-       </property>
-       <property name="topMargin">
-        <number>9</number>
-       </property>
-       <property name="rightMargin">
-        <number>9</number>
-       </property>
-       <property name="bottomMargin">
-        <number>9</number>
+     <widget class="QWidget" name="askPaymentWidget" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="spacing">
+        <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="Line" name="line_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="bottom_wid" native="true">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>140</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QLabel{
 		  border-radius:4px;
@@ -185,92 +190,254 @@
                 rgba(24, 25, 26, 110), stop:1 
                 rgba(24, 25, 26, 80));
 
-}</string>
-         </property>
-         <property name="text">
-          <string>High Quality
-Mp3 download</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_6">
-         <property name="styleSheet">
-          <string notr="true">QWidget{
-		  border-radius:4px;
-		  padding: 9px;
+}
+QWidget#bottom_wid{
+	padding: 9px;
 	     color: silver;
+         background-image:url(:/icons/texture.png);
 		  background-clip: border;
+
 	     background-color: qlineargradient(spread:reflect,
                  x1:1, y1:0, x2:1, y2:1, stop:0 
-                rgba(24, 25, 26, 110), stop:1 
-                rgba(24, 25, 26, 80));
+                rgba(24, 25, 26, 70), stop:1 
+                rgba(24, 25, 26, 40));
+}
 
-}</string>
+</string>
          </property>
-         <property name="text">
-          <string>High Definition 
-Download</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="styleSheet">
-          <string notr="true">QWidget{
-		  border-radius:4px;
-		  padding: 9px;
-	     color: silver;
-		  background-clip: border;
-	     background-color: qlineargradient(spread:reflect,
-                 x1:1, y1:0, x2:1, y2:1, stop:0 
-                rgba(24, 25, 26, 110), stop:1 
-                rgba(24, 25, 26, 80));
-
-}</string>
-         </property>
-         <property name="text">
-          <string>No Video
- Watermark</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="unlock_toolButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Unlock all features</string>
-         </property>
-         <property name="text">
-          <string>Unclock Now</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icons.qrc">
-           <normaloff>:/icons/lock-2-fill.png</normaloff>:/icons/lock-2-fill.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="leftMargin">
+           <number>9</number>
+          </property>
+          <property name="topMargin">
+           <number>9</number>
+          </property>
+          <property name="rightMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>9</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QLabel" name="f1">
+              <property name="minimumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">padding: 6px;
+margin-bottom: -2px;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="icons.qrc">:/icons/lock-unlock-line.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>Video Download
+</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QLabel" name="f2">
+              <property name="minimumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">padding: 6px;
+margin-bottom: -2px;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="icons.qrc">:/icons/lock-line.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>High Quality
+Audio only download</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QLabel" name="f3">
+              <property name="minimumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">padding: 6px;
+margin-bottom: -2px;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="icons.qrc">:/icons/lock-line.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_11">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>Download Video
+without Watermark</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QToolButton" name="unlock_toolButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Unlock all features</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string>Unclock all
+features now</string>
+              </property>
+              <property name="icon">
+               <iconset resource="icons.qrc">
+                <normaloff>:/icons/lock-unlock-line.png</normaloff>:/icons/lock-unlock-line.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="toolButtonStyle">
+               <enum>Qt::ToolButtonTextUnderIcon</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="aboutButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>About</string>
+              </property>
+              <property name="icon">
+               <iconset resource="icons.qrc">
+                <normaloff>:/icons/information-line.png</normaloff>:/icons/information-line.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>

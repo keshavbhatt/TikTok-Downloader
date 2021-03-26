@@ -2,6 +2,7 @@
 #define HELP_H
 
 #include <QWidget>
+#include <QSettings>
 
 namespace Ui {
 class Help;
@@ -21,8 +22,11 @@ public:
 private slots:
     void on_listView_doubleClicked(const QModelIndex &index);
 
+    void on_tabWidget_currentChanged(int index);
+
 private:
     Ui::Help *ui;
+    QSettings settings;
 };
 
 #endif // HELP_H

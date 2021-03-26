@@ -36,6 +36,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->download_button->setEnabled(isValidUrl(ui->url_lineEdit->text().trimmed()));
 
+    //init history
+    history = new History(this);
+    history->setWindowTitle(QApplication::applicationName()+" |"+tr(" History"));
+    history->setWindowModality(Qt::ApplicationModal);
+    history->setWindowFlags(Qt::Dialog);
+    connect(history,&History::loadFromHistoryUrls,[=](QString url)
+    {
+        ui->url_lineEdit->setText(url);
+        history->close();
+    });
+    ui->unlock_toolButton->setStyleSheet(toolButtonStyle());
+    ui->aboutButton->setStyleSheet(toolButtonStyle()+";border:none;");
+    init_account();
 }
 
 void MainWindow::setStyle(QString fname)
@@ -121,7 +134,7 @@ bool MainWindow::isValidUrl(QString arg1)
 
 void MainWindow::on_download_button_clicked()
 {
-    DownloadPage *m_details = new DownloadPage(this);
+    DownloadPage *m_details = new DownloadPage(this,history,accountWidget);
     eff =  new QGraphicsOpacityEffect(m_details);
 
     m_details->setAttribute(Qt::WA_DeleteOnClose);
@@ -146,6 +159,22 @@ void MainWindow::on_download_button_clicked()
     }
 }
 
+QString MainWindow::toolButtonStyle()
+{
+    QColor rgb = QColor("#266A85");
+    QString r = QString::number(rgb.red());
+    QString g = QString::number(rgb.green());
+    QString b = QString::number(rgb.blue());
+
+    QString widgetStyle= "border-radius:4px;background-color:"
+                         "qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,"
+                         "stop:0.129213 rgba("+r+", "+g+", "+b+", 40),"
+                         "stop:0.38764 rgba("+r+", "+g+", "+b+", 136),"
+                         "stop:0.679775 rgba("+r+", "+g+", "+b+", 94),"
+                         "stop:1 rgba("+r+", "+g+", "+b+", 30));";
+    return widgetStyle;
+}
+
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
     DownloadPage *m_details = this->findChild<DownloadPage*>();
@@ -155,3 +184,120 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
+
+void MainWindow::on_history_button_clicked()
+{
+    history->refresh();
+    history->show();
+}
+
+void MainWindow::init_account()
+{
+    //work around to fix recieve created_signal from account class
+    QPushButton *pb = new QPushButton("pop",this);
+    pb->setObjectName("push");
+    pb->hide();
+    connect(pb,&QPushButton::clicked,[=](){
+       qDebug()<<"PUSH BUTTON clicked";
+       QTimer::singleShot(2000,[=](){
+           if(accountWidget!=nullptr){
+               if(!accountWidget->isVisible()){
+                   accountWidget->show();
+               }
+           }
+       });
+    });
+    if(accountWidget==nullptr)
+    {
+        accountWidget = new account(this);
+        accountWidget->setObjectName("accountWidget");
+        accountWidget->setWindowFlags(Qt::Dialog);
+        accountWidget->adjustSize();
+        connect(accountWidget,&account::showAccountWidget,[=](){
+           accountWidget->show();
+           accountWidget->flashPurchaseButton();
+        });
+        //signal based check to enable pro on live check
+        connect(accountWidget,&account::disablePro,[=](){
+           disablePro();
+        });
+        connect(accountWidget,&account::enablePro,[=](){
+           enablePro();
+        });
+        //manual check to enable pro if not conencted
+        accountWidget->check_pro();
+        if(accountWidget->pro == true){
+            enablePro();
+        }else{
+            disablePro();
+        }
+    }
+}
+
+void MainWindow::enablePro()
+{
+    ui->unlock_toolButton->setIcon(QIcon(":/icons/account-pin-circle-line.png"));
+    ui->unlock_toolButton->setText("Your\nAccount");
+
+    ui->f1->setPixmap(QPixmap(":/icons/lock-unlock-line.png"));
+    ui->f2->setPixmap(QPixmap(":/icons/lock-unlock-line.png"));
+    ui->f3->setPixmap(QPixmap(":/icons/lock-unlock-line.png"));
+
+}
+
+void MainWindow::disablePro()
+{
+    ui->unlock_toolButton->setIcon(QIcon(":/icons/lock-unlock-line.png"));
+    ui->unlock_toolButton->setText("Unclock all\nfeatures now");
+
+    ui->f1->setPixmap(QPixmap(":/icons/lock-line.png"));
+    ui->f2->setPixmap(QPixmap(":/icons/lock-line.png"));
+    ui->f3->setPixmap(QPixmap(":/icons/lock-line.png"));
+}
+
+void MainWindow::on_unlock_toolButton_clicked()
+{
+    accountWidget->show();
+}
+
+void MainWindow::on_aboutButton_clicked()
+{
+    QDialog *aboutDialog = new QDialog(this,Qt::Dialog);
+    aboutDialog->setWindowModality(Qt::WindowModal);
+    QVBoxLayout *layout = new QVBoxLayout;
+    QLabel *message = new QLabel(aboutDialog);
+    layout->addWidget(message);
+    connect(message,&QLabel::linkActivated,[=](const QString linkStr){
+        if(linkStr.contains("about_qt")){
+            qApp->aboutQt();
+        }else{
+            QDesktopServices::openUrl(QUrl(linkStr));
+        }
+    });
+    aboutDialog->setLayout(layout);
+    aboutDialog->setAttribute(Qt::WA_DeleteOnClose,true);
+    aboutDialog->show();
+
+    QString mes =
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><img src=':/icons/app/icon-64.png' /></p>"
+                 "<p align='center' style='-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><br /></p>"
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>Designed and Developed</p>"
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>by <span style=' font-weight:600;'>Keshav Bhatt</span> &lt;keshavnrj@gmail.com&gt;</p>"
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>Website: https://ktechpit.com</p>"
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>Runtime: <a href='http://about_qt'>Qt Toolkit</a></p>"
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'>Version: "+QApplication::applicationVersion()+"</p>"
+                 "<p align='center' style='-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><br /></p>"
+                 "<p align='center' style=' margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><a href='https://snapcraft.io/search?q=keshavnrj'>More Apps</p>"
+                 "<p align='center' style='-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;'><br /></p>";
+
+    QGraphicsOpacityEffect *eff = new QGraphicsOpacityEffect(this);
+    message->setGraphicsEffect(eff);
+    QPropertyAnimation *a = new QPropertyAnimation(eff,"opacity");
+    a->setDuration(1000);
+    a->setStartValue(0);
+    a->setEndValue(1);
+    a->setEasingCurve(QEasingCurve::InCurve);
+    a->start(QPropertyAnimation::DeleteWhenStopped);
+    message->setText(mes);
+    message->show();
+}

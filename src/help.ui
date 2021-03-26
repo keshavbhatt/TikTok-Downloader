@@ -49,8 +49,30 @@ p, li { white-space: pre-wrap; }
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QListView" name="listView">
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="textElideMode">
+          <enum>Qt::ElideMiddle</enum>
+         </property>
+         <property name="spacing">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <italic>true</italic>
+          </font>
+         </property>
+         <property name="text">
+          <string>Note: Some URL may be not working, Double click to test them.</string>
          </property>
         </widget>
        </item>
