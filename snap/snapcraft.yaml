@@ -44,7 +44,7 @@ plugs:
     interface: content
     target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
-  qt551:
+  qt513:
     interface: content
     target: $SNAP/qt513
     default-provider: qt513
