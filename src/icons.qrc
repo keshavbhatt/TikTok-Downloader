@@ -139,5 +139,7 @@
         <file>icons/blur-off-line.png</file>
         <file>icons/lock-line.png</file>
         <file>icons/lock-unlock-line.png</file>
+        <file>icons/funds-line.png</file>
+        <file>icons/others/tt_tbc_head.png</file>
     </qresource>
 </RCC>

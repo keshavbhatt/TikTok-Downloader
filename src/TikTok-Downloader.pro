@@ -43,6 +43,7 @@ SOURCES += \
         mainwindow.cpp \
         request.cpp \
         rungaurd.cpp \
+        trending.cpp \
         utils.cpp \
         widgets/elidedLabel/elidedlabel.cpp \
         widgets/waitingSpinner/waitingspinnerwidget.cpp
@@ -52,11 +53,13 @@ HEADERS += \
         claimoffer.h \
         cookiejar.h \
         downloadpage.h \
+        gridlayoututil.h \
         help.h \
         history.h \
         mainwindow.h \
         request.h \
         rungaurd.h \
+        trending.h \
         utils.h \
         widgets/elidedLabel/elidedlabel.h \
         widgets/waitingSpinner/waitingspinnerwidget.h
@@ -67,7 +70,9 @@ FORMS += \
         downloadpage.ui \
         help.ui \
         history.ui \
-        mainwindow.ui
+        mainwindow.ui \
+        trending.ui \
+        trending_option.ui
 
 # Default rules for deployment.
 isEmpty(PREFIX){

@@ -94,6 +94,42 @@
            <property name="placeholderText">
             <string>Enter a TikTok or Musically Video Url</string>
            </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="paste_button">
+           <property name="toolTip">
+            <string>Paste</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/clipboard-line.png</normaloff>:/icons/clipboard-line.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_3">
+           <property name="minimumSize">
+            <size>
+             <width>1</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>1</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
           </widget>
          </item>
          <item>
@@ -111,9 +147,42 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="trending_button">
+           <property name="toolTip">
+            <string>Show trending videos</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="icons.qrc">
+             <normaloff>:/icons/funds-line.png</normaloff>:/icons/funds-line.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line">
+           <property name="minimumSize">
+            <size>
+             <width>1</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>1</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="help_button">
            <property name="toolTip">
-            <string>How to download</string>
+            <string>Help</string>
            </property>
            <property name="text">
             <string/>
@@ -381,7 +450,7 @@ without Watermark</string>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
             <property name="spacing">
              <number>0</number>
             </property>
@@ -419,19 +488,29 @@ features now</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="aboutButton">
+             <widget class="QToolButton" name="aboutButton">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
               <property name="text">
-               <string>About</string>
+               <string>About
+Application</string>
               </property>
               <property name="icon">
                <iconset resource="icons.qrc">
                 <normaloff>:/icons/information-line.png</normaloff>:/icons/information-line.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="toolButtonStyle">
+               <enum>Qt::ToolButtonTextUnderIcon</enum>
               </property>
              </widget>
             </item>

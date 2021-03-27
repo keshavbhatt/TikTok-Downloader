@@ -11,11 +11,13 @@
 #include <QDir>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
+#include <QClipboard>
 
 #include "downloadpage.h"
 #include "help.h"
 #include "history.h"
 #include "account.h"
+#include "trending.h"
 
 
 namespace Ui {
@@ -54,13 +56,18 @@ private slots:
     void enablePro();
     void on_aboutButton_clicked();
 
+    void on_trending_button_clicked();
+
+    void on_paste_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSettings settings;
     QGraphicsOpacityEffect *eff = nullptr;
     History *history = nullptr;
-    account *accountWidget = nullptr;
-
+    account *accountWidget   = nullptr;
+    Trending *trendingWidget = nullptr;
+    QClipboard *cb= nullptr;
 };
 
 #endif // MAINWINDOW_H

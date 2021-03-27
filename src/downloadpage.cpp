@@ -114,9 +114,9 @@ void DownloadPage::getResult(QUrl url)
             }else{
                 if(reply->error() == QNetworkReply::InternalServerError
                         ||reply->error() == QNetworkReply::ContentNotFoundError){
-                    requestError("Invalid video URL\n Server responded: "+reply->readAll());
+                    requestError("Invalid video URL\n\nServer Responded: "+reply->readAll());
                 }else{
-                    requestError(reply->errorString().replace("ktechpit.com/USS","onion://ttd:8880")+"\n Server responded: "+reply->readAll());
+                    requestError(reply->errorString().replace("ktechpit.com/USS","onion://ttd:8880")+"\n\nServer Responded: "+reply->readAll());
                 }
             }
            reply->deleteLater();
@@ -148,7 +148,7 @@ void DownloadPage::parseDownloadOptions(QByteArray rep)
 
     if(rep.contains("error")){
         QMessageBox::critical(this,QApplication::applicationName()+"| "+
-                              tr("Download failed"),QString("There was an issue with the TikTok link you submitted. Please try again.\n Server responded: "+rep));
+                              tr("Download failed"),QString("There was an issue with the TikTok link you submitted. Please try again.\n\nServer Responded: "+rep));
         on_close_button_clicked();
         return;
     }
@@ -161,7 +161,7 @@ void DownloadPage::parseDownloadOptions(QByteArray rep)
     }
     ui->results_widget->show();
     ui->progress_widget->hide();
-    QJsonObject		jsonObj			= jsonResponse.object();
+    QJsonObject		jsonObj                 = jsonResponse.object();
     QJsonArray		resultsJsonArray		= jsonObj["results"].toArray();
     QJsonArray		cookiesJsonArray		= jsonObj["cookies"].toArray();
     //add results
@@ -295,7 +295,7 @@ void DownloadPage::download(QString url,QString name)
                 ui->progressBar->setValue(100);
                 ui->done_button->setEnabled(true);
             }else{
-                requestError(reply->errorString()+"\n Server responded: "+reply->readAll());
+                requestError(reply->errorString()+"\n\nServer Responded: "+reply->readAll());
             }
             //delete reply
             reply->deleteLater();

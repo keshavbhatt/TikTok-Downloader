@@ -20,8 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if(settings.value("mainwindow_geometry").isValid()){
         restoreGeometry(settings.value("mainwindow_geometry").toByteArray());
     }else{
-        //this->resize(ui->mainToolBar->sizeHint().width(),500);
-        this->setWindowState(Qt::WindowMaximized);
+        this->adjustSize();
     }
     if(settings.value("mainwindow_windowState").isValid()){
         restoreState(settings.value("mainwindow_windowState").toByteArray());
@@ -49,6 +48,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->unlock_toolButton->setStyleSheet(toolButtonStyle());
     ui->aboutButton->setStyleSheet(toolButtonStyle()+";border:none;");
     init_account();
+
+    //init clipboard
+    cb = QApplication::clipboard();
+
 }
 
 void MainWindow::setStyle(QString fname)
@@ -300,4 +303,27 @@ void MainWindow::on_aboutButton_clicked()
     a->start(QPropertyAnimation::DeleteWhenStopped);
     message->setText(mes);
     message->show();
+}
+
+void MainWindow::on_trending_button_clicked()
+{
+    if(trendingWidget==nullptr)
+    {
+        trendingWidget = new Trending(this);
+        trendingWidget->setWindowTitle(QApplication::applicationName()+" | Trending Videos");
+        trendingWidget->setWindowFlags(Qt::Dialog);
+        trendingWidget->setWindowModality(Qt::WindowModal);
+        trendingWidget->setMinimumWidth((3*211)+(9*6)+(6*3));
+        connect(trendingWidget,&Trending::loadFromTrendingUrls,[=](QString url)
+        {
+            ui->url_lineEdit->setText(url);
+            trendingWidget->close();
+        });
+    }
+    trendingWidget->show();
+}
+
+void MainWindow::on_paste_button_clicked()
+{
+    ui->url_lineEdit->setText(cb->text());
 }
